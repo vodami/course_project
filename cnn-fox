@@ -1,0 +1,21 @@
+from textblob import TextBlob
+from newspaper import Article
+import nltk
+nltk.download('punkt')
+url1 = 'https://edition.cnn.com/europe/live-news/russia-ukraine-war-news-02-25-24/index.html'
+url2 = 'https://www.foxnews.com/category/world/conflicts/ukraine'
+
+article_cnn = Article(url1)
+article_fox = Article(url2)
+
+article_cnn.download()
+article_fox.download()
+article_cnn.parse()
+article_fox.parse()
+article_cnn.nlp()
+article_fox.nlp()
+summ_cnn = article_cnn.summary
+print(summ_cnn)
+blob_cnn = TextBlob(summ_cnn)
+sentiment_cnn = blob_cnn.sentiment.polarity
+print(sentiment_cnn)
