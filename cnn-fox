@@ -19,3 +19,21 @@ print(summ_cnn)
 blob_cnn = TextBlob(summ_cnn)
 sentiment_cnn = blob_cnn.sentiment.polarity
 print(sentiment_cnn)
+import pyodbc
+
+connection = pyodbc.connect('Driver={SQL Server};' 'Server=DESKTOP-352JT5N\SQLEXPRESS;' 'Database=NewsProject;' 'Trusted_connection=yes')
+
+sql_query = """
+SELECT *
+FROM Articles
+"""
+
+cursor = connection.cursor()
+cursor.execute(sql_query)
+
+results = cursor.fetchall()
+
+for row in results:
+    print(row)
+
+connection.close()
